@@ -1,0 +1,20 @@
+.ar1{
+    width: 200px;
+    height: 25px;
+}
+
+.camiones{
+    border-style: solid;
+    border-color:#9EC5FE;
+    margin-bottom: 10px;
+    padding-right: 0;
+}
+
+.titulo-camion{
+    margin: 0;
+    background-color: #557ebd;
+}
+
+.striped{
+    background-color: #bdd2f2;
+}

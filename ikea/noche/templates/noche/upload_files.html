@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} - Noches{% endblock %}
+{% block body %}
+    <div class="container">
+        <div>
+            {% if messages %}
+                <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="text-center">
+            <h1>Actualizar archivos necesarios segun uso</h1>
+        </div>
+        <div class="mb-3 form">
+            <form action="{% url 'noche:upload_files' %}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                {% csrf_token %}
+                {{ form.as_p }}  {# Agregar el formulario aquí usando el tag {{ form.as_p }} #}
+                <input type="submit" value="Subir archivos">
+            </form>
+        </div>
+    </div>
+{% endblock %}

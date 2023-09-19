@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class='container'>
+    <div class='row align-items-center'>
+        <div class="col">
+            <img src="{% static 'core/img/logo-ikea.png' %}" alt="logo-ikea">
+        </div>
+        <div class="col">
+            <img src="{% static 'core/img/logo-inflow.png' %}" alt="logo-inflow">
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <a href="{% url 'noche:camiones_mv1' %}" role="button" class="btn btn-primary btn-lg my-2">Info Noche MV1</a>
+        <a href="{% url 'noche:camiones_mv0' %}" role="button" class="btn btn-primary btn-lg my-2">Info Noche MV0</a>
+        <a href="{% url 'noche:alta_rotacion' %}" role="button" class="btn btn-primary btn-lg my-2">Alta Rotacion</a>
+        <a href="{% url 'noche:referencia_por_camion_mv1' %}" role="button" class="btn btn-primary btn-lg my-2">Referencias Camion MV1</a>
+        <a href="{% url 'noche:referencia_por_camion' %}" role="button" class="btn btn-primary btn-lg my-2">Referencias Camion MV0</a>
+    </div>
+</div>
+    
+{% endblock body %}

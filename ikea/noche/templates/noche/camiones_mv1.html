@@ -1,0 +1,276 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'noche/css/noche.css' %}" type="text/css">
+{% endblock %}
+{% block title %} - Noches{% endblock %}
+{% block body %}
+ <div class="container">
+     <div class="row table-responsive sticky-top">
+         <table class="table table-primary table-striped table-bordered table-sm text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">PARES</th>
+                        <th scope="col">IMPAR</th>
+                        <th scope="col">FONDO PAR</th>
+                        <th scope="col">FONDO IMPAR</th>
+                        <th scope="col">PAX</th>
+                        <th scope="col">24/26</th>
+                        <th scope="col">1/3</th>
+                        <th scope="col">ZONA 1</th>
+                        <th scope="col">ZONA 2</th>
+                        <th scope="col">ZONA 3</th>
+                        <th scope="col">ZONA 4</th>
+                        <th scope="col">CABECERAS</th>
+                        <th>REPO SGF</th>
+                        <th>Repeticiones</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="par">{{repo_camion_mv1.4}}</td>
+                        <td id="impar">{{repo_camion_mv1.5}}</td>
+                        <td id="fpar">{{repo_camion_mv1.8}}</td>
+                        <td id="fimpar">{{repo_camion_mv1.9}}</td>
+                        <td id="pax">{{repo_camion_mv1.6}}</td>
+                        <td id="doscuatro">{{repo_camion_mv1.7}}</td>
+                        <td id="unotres">{{repo_camion_mv1.10}}</td>
+                        <td id="zonauno">{{repo_camion_mv1.0}}</td>
+                        <td id="zonados">{{repo_camion_mv1.1}}</td>
+                        <td id="zonatres">{{repo_camion_mv1.2}}</td>
+                        <td id="zonacuatro">{{repo_camion_mv1.3}}</td>
+                        <td id="cabeceras">{{repo_camion_mv1.11}}</td>
+                        <td> <a class="btn btn-primary" data-bs-toggle="collapse" href="#sgf_al010" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Tareas repo
+                            </a></td>
+                        <td> <a class="btn btn-primary" data-bs-toggle="collapse" href="#repeticiones" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Repeticiones
+                        </a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row collapse" id="sgf_al010">
+                <div class="row table-responsive">
+                <table class="table table-primary table-striped table-bordered table-sm text-center">
+                       <thead>
+                           <tr>
+                               <th scope="col">PARES</th>
+                               <th scope="col">IMPAR</th>
+                               <th scope="col">FONDO PAR</th>
+                               <th scope="col">FONDO IMPAR</th>
+                               <th scope="col">PAX</th>
+                               <th scope="col">24/26</th>
+                               <th scope="col">1/3</th>
+                               <th scope="col">ZONA 1</th>
+                               <th scope="col">ZONA 2</th>
+                               <th scope="col">ZONA 3</th>
+                               <th scope="col">ZONA 4</th>
+                               <th scope="col">CABECERAS</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                               <td>{{sgf_mv1.4}}</td>
+                               <td>{{sgf_mv1.5}}</td>
+                               <td>{{sgf_mv1.8}}</td>
+                               <td>{{sgf_mv1.9}}</td>
+                               <td>{{sgf_mv1.6}}</td>
+                               <td>{{sgf_mv1.7}}</td>
+                               <td>{{sgf_mv1.10}}</td>
+                               <td>{{sgf_mv1.0}}</td>
+                               <td>{{sgf_mv1.1}}</td>
+                               <td>{{sgf_mv1.2}}</td>
+                               <td>{{sgf_mv1.3}}</td>
+                               <td>{{sgf_mv1.11}}</td>
+                           </tr>
+                           <thead>
+                           <th scope="col" colspan="12">TOTAL REPO SFG+CAMION</th>
+                           </thead>
+                           <tr>
+                               <td>{{ repo_camion_mv1.4|add:sgf_mv1.4 }}</td>
+                               <td>{{ repo_camion_mv1.5|add:sgf_mv1.5 }}</td>
+                               <td>{{ repo_camion_mv1.8|add:sgf_mv1.8 }}</td>
+                               <td>{{ repo_camion_mv1.9|add:sgf_mv1.9 }}</td>
+                               <td>{{ repo_camion_mv1.6|add:sgf_mv1.6 }}</td>
+                               <td>{{ repo_camion_mv1.7|add:sgf_mv1.7 }}</td>
+                               <td>{{ repo_camion_mv1.10|add:sgf_mv1.10 }}</td>
+                               <td>{{ repo_camion_mv1.0|add:sgf_mv1.0 }}</td>
+                               <td>{{ repo_camion_mv1.1|add:sgf_mv1.1 }}</td>
+                               <td>{{ repo_camion_mv1.2|add:sgf_mv1.2 }}</td>
+                               <td>{{ repo_camion_mv1.3|add:sgf_mv1.3 }}</td>
+                               <td>{{ repo_camion_mv1.11|add:sgf_mv1.11 }}</td>
+                           </tr>
+                       </tbody>
+                   </table>
+                </div>
+            </div>
+            <div class="row collapse" id="repeticiones">
+                {{ pallet_repetidos|safe }}
+            </div>
+            <div class="row justify-content-between">
+                {% for elem, items in camion.items %}
+                <div class="col-6">
+                    <ul class="camiones miLista list-group mv1 text-center" onclick="cambiarColor(this)">
+                        <h1 class="titulo-camion">{{ elem }}</h1>
+                        {% for key, item in items.items %}
+                            <li class="list-group-item list-group-item-primary mv1">Pares:<em class="fw-bolder pares"> {{ item.pares }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1 striped">Impares:<em class="fw-bolder impares"> {{ item.impares }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Fondo par:<em class="fw-bolder fpar"> {{ item.fondopar }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1 striped">Fondo impar:<em class="fw-bolder fimpar"> {{ item.fondoimpar }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1">PAX:<em class="fw-bolder pax"> {{ item.pax }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1 striped">24-26:<em class="fw-bolder doscuatro"> {{ item.2426 }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Pasillo 1/3:<em class="fw-bolder unotres"> {{ item.1a3 }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1 striped">Zona1:<em class="fw-bolder zonauno"> {{ item.zona1 }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1 ">Zona2:<em class="fw-bolder zonados"> {{ item.zona2 }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1 striped">Zona3:<em class="fw-bolder zonatres"> {{ item.zona3 }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Zona4:<em class="fw-bolder zonacuatro"> {{ item.zona4 }}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Cabeceras:<em class="fw-bolder cabeceras"> {{ item.cabeceras }}</em></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>           
+         <div>
+            <script>
+                function cambiarColor(lista) {
+                  // Obtener el elemento con id
+                  var parElement = document.getElementById("par");
+                  var imparElement = document.getElementById("impar");
+                  var fparElement = document.getElementById("fpar");
+                  var fimparElement = document.getElementById("fimpar");
+                  var paxElement = document.getElementById("pax");
+                  var unotresElement = document.getElementById("unotres");
+                  var doscuatroElement = document.getElementById("doscuatro");
+                  var zonaunoElement = document.getElementById("zonauno");
+                  var zonadosElement = document.getElementById("zonados");
+                  var zonatresElement = document.getElementById("zonatres");
+                  var zonacuatroElement = document.getElementById("zonacuatro");
+                  var cabecerasElement = document.getElementById("cabeceras");
+                
+                  // Obtener el dato de la lista concreta
+                  var pares = lista.querySelector(".pares");
+                  var impares = lista.querySelector(".impares");
+                  var fpar = lista.querySelector(".fpar");
+                  var fimpar = lista.querySelector(".fimpar");
+                  var pax = lista.querySelector(".pax");
+                  var unotres = lista.querySelector(".unotres");
+                  var doscuatro = lista.querySelector(".doscuatro");
+                  var zonauno = lista.querySelector(".zonauno");
+                  var zonados = lista.querySelector(".zonados");
+                  var zonatres = lista.querySelector(".zonatres");
+                  var zonacuatro = lista.querySelector(".zonacuatro");
+                  var cabeceras = lista.querySelector(".cabeceras");
+                
+                  // Si el color de la lista no es rojo, lo cambiamos a rojo
+                  if (!lista.style.color || lista.style.color === "") {
+                    lista.style.color = "#E95C5D";
+                
+                <!-- PARES -->
+                    var parcurrentValue = parseInt(pares.textContent);
+                    parElement.textContent -= parcurrentValue;
+                <!-- IMPARES -->
+                    var imparcurrentValue = parseInt(impares.textContent);
+                    imparElement.textContent -= imparcurrentValue;
+                <!--    FONDO PAR-->
+                    var fparcurrentValue = parseInt(fpar.textContent);
+                    fparElement.textContent -= fparcurrentValue;
+                <!--    FONDO IMPAR-->
+                    var fimparcurrentValue = parseInt(fimpar.textContent);
+                    fimparElement.textContent -= fimparcurrentValue;
+                <!--    PAX-->
+                    var paxcurrentValue = parseInt(pax.textContent);
+                    paxElement.textContent -= paxcurrentValue;
+                <!--    1A3-->
+                    var unotrescurrentValue = parseInt(unotres.textContent);
+                    unotresElement.textContent -= unotrescurrentValue;
+                <!--    24/26-->
+                    var doscuatrocurrentValue = parseInt(doscuatro.textContent);
+                    doscuatroElement.textContent -= doscuatrocurrentValue;
+                <!--    ZONA 1-->
+                    var zonaunocurrentValue = parseInt(zonauno.textContent);
+                    zonaunoElement.textContent -= zonaunocurrentValue;
+                <!--    ZONA 2-->
+                    var zonadoscurrentValue = parseInt(zonados.textContent);
+                    zonadosElement.textContent -= zonadoscurrentValue;
+                <!--    ZONA 3-->
+                    var zonatrescurrentValue = parseInt(zonatres.textContent);
+                    zonatresElement.textContent -= zonatrescurrentValue;
+                <!--    ZONA 4-->
+                    var zonacuatrocurrentValue = parseInt(zonacuatro.textContent);
+                    zonacuatroElement.textContent -= zonacuatrocurrentValue;
+                <!--    CABECERAS-->
+                    var cabecerascurrentValue = parseInt(cabeceras.textContent);
+                    cabecerasElement.textContent -= cabecerascurrentValue;
+                
+                  } else {
+                    // Si el color de la lista es rojo, lo cambiamos a su color original
+                    lista.style.color = "";
+                
+                    //Convierte a int los valores actuales de el dato
+                    var parcurrentValue = parseInt(pares.textContent);
+                    var imparcurrentValue = parseInt(impares.textContent);
+                    var fparcurrentValue = parseInt(fpar.textContent);
+                    var fimparcurrentValue = parseInt(fimpar.textContent);
+                    var paxcurrentValue = parseInt(pax.textContent);
+                    var unotrescurrentValue = parseInt(unotres.textContent);
+                    var doscuatrocurrentValue = parseInt(doscuatro.textContent);
+                    var zonaunocurrentValue = parseInt(zonauno.textContent);
+                    var zonadoscurrentValue = parseInt(zonados.textContent);
+                    var zonatrescurrentValue = parseInt(zonatres.textContent);
+                    var zonacuatrocurrentValue = parseInt(zonacuatro.textContent);
+                    var cabecerascurrentValue = parseInt(cabeceras.textContent);
+                
+                    // Convertir el valor a entero y sumarlo con currentValue
+                <!-- PARES -->
+                    var parintValue = parseInt(parElement.textContent);
+                    var partotal = parintValue + parcurrentValue;
+                    parElement.textContent = partotal;
+                <!--IMPARES-->
+                    var imparintValue = parseInt(imparElement.textContent);
+                    var impartotal = imparintValue + imparcurrentValue;
+                    imparElement.textContent = impartotal;
+                <!--    FONDO PAR-->
+                    var fparintValue = parseInt(fparElement.textContent);
+                    var fpartotal = fparintValue + fparcurrentValue;
+                    fparElement.textContent = fpartotal;
+                <!--    FONDO IMPAR-->
+                    var fimparintValue = parseInt(fimparElement.textContent);
+                    var fimpartotal = fimparintValue + fimparcurrentValue;
+                    fimparElement.textContent = fimpartotal;
+                <!--    PAX-->
+                    var paxintValue = parseInt(paxElement.textContent);
+                    var paxtotal = paxintValue + paxcurrentValue;
+                    paxElement.textContent = paxtotal;
+                <!--    1A3-->
+                    var unotresintValue = parseInt(unotresElement.textContent);
+                    var unotrestotal = unotresintValue + unotrescurrentValue;
+                    unotresElement.textContent = unotrestotal;
+                <!--    24/26-->
+                    var doscuatrointValue = parseInt(doscuatroElement.textContent);
+                    var doscuatrototal = doscuatrointValue + doscuatrocurrentValue;
+                    doscuatroElement.textContent = doscuatrototal;
+                <!--ZONA 1-->
+                    var zonaunointValue = parseInt(zonaunoElement.textContent);
+                    var zonaunototal = zonaunointValue +zonaunocurrentValue;
+                    zonaunoElement.textContent = zonaunototal;
+                <!--    ZONA 2-->
+                    var zonadosintValue = parseInt(zonadosElement.textContent);
+                    var zonadostotal = zonadosintValue +zonadoscurrentValue;
+                    zonadosElement.textContent = zonadostotal;
+                <!--    ZONA 3-->
+                    var zonatresintValue = parseInt(zonatresElement.textContent);
+                    var zonatrestotal = zonatresintValue +zonatrescurrentValue;
+                    zonatresElement.textContent = zonatrestotal;
+                <!--    ZONA 4-->
+                    var zonacuatrointValue = parseInt(zonacuatroElement.textContent);
+                    var zonacuatrototal = zonacuatrointValue +zonacuatrocurrentValue;
+                    zonacuatroElement.textContent = zonacuatrototal;
+                <!--    CABECERAS-->
+                    var cabecerasintValue = parseInt(cabecerasElement.textContent);
+                    var cabecerastotal = cabecerasintValue +cabecerascurrentValue;
+                    cabecerasElement.textContent = cabecerastotal;
+                  }
+                }
+            </script>
+ {% endblock body %}

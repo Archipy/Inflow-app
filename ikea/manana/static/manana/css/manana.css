@@ -1,0 +1,15 @@
+.dataTables_wrapper .dataTables_filter {
+    display: flex;
+    float: none;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+.dataTables_empty{
+    display: none;
+}
+
+.table td.selected {
+    background-color: #D7D8DA; /* Cambia el color a tu preferencia */
+}

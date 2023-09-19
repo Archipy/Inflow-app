@@ -1,0 +1,255 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'noche/css/noche.css' %}" type="text/css">
+{% endblock %}
+{% block title %} - Noches{% endblock %}
+{% block body %}
+ <div class="container">
+     <div class="row table-responsive sticky-top">
+         <table class="table table-dark table-striped table-bordered table-sm text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">MENAJE</th>
+                        <th scope="col">TEXTIL 12</th>
+                        <th scope="col">TEXTIL 11</th>
+                        <th scope="col">ORDEN</th>
+                        <th scope="col">BAÑOS</th>
+                        <th scope="col">ILUMINACION</th>
+                        <th scope="col">ALFOMBRAS</th>
+                        <th scope="col">DECORACION</th>
+                        <th scope="col">NIÑOS</th>
+                        <th scope="col">COCINAS</th>
+                        <th scope="col">ACTIVIDADES</th>
+                        <th>REPO SGF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="menaje">{{repo_camion_mv0.0}}</td>
+                        <td id="textildoce">{{repo_camion_mv0.1}}</td>
+                        <td id="textilonce">{{repo_camion_mv0.2}}</td>
+                        <td id="orden">{{repo_camion_mv0.3}}</td>
+                        <td id="banos">{{repo_camion_mv0.4}}</td>
+                        <td id="ilu">{{repo_camion_mv0.5}}</td>
+                        <th id="alfombras">{{repo_camion_mv0.10}}</th>
+                        <td id="deco">{{repo_camion_mv0.6}}</td>
+                        <td id="ninos">{{repo_camion_mv0.7}}</td>
+                        <td id="cocinas">{{repo_camion_mv0.8}}</td>
+                        <td id="actividades">{{repo_camion_mv0.9}}</td>
+                        <td> <a class="btn btn-dark" data-bs-toggle="collapse" href="#sgf_al010" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Tareas repo
+                        </a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row collapse" id="sgf_al010">
+                <div class="row table-responsive">
+                <table class="table table-dark table-striped table-bordered table-sm text-center">
+                       <thead>
+                           <tr>
+                                <th scope="col">MENAJE</th>
+                                <th scope="col">TEXTIL 12</th>
+                                <th scope="col">TEXTIL 11</th>
+                                <th scope="col">ORDEN</th>
+                                <th scope="col">BAÑOS</th>
+                                <th scope="col">ILUMINACION</th>
+                                <th scope="col">ALFOMBRAS</th>
+                                <th scope="col">DECORACION</th>
+                                <th scope="col">NIÑOS</th>
+                                <th scope="col">COCINAS</th>
+                                <th scope="col">ACTIVIDADES</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                               <td>{{sgf_mv0.0}}</td>
+                               <td>{{sgf_mv0.1}}</td>
+                               <td>{{sgf_mv0.2}}</td>
+                               <td>{{sgf_mv0.3}}</td>
+                               <td>{{sgf_mv0.4}}</td>
+                               <td>{{sgf_mv0.5}}</td>
+                               <td>{{sgf_mv0.10}}</td>
+                               <td>{{sgf_mv0.6}}</td>
+                               <td>{{sgf_mv0.7}}</td>
+                               <td>{{sgf_mv0.8}}</td>
+                               <td>{{sgf_mv0.9}}</td>
+                           </tr>
+                           <thead>
+                           <th scope="col" colspan="12">TOTAL REPO SFG+CAMION</th>
+                           </thead>
+                           <tr>
+                               <td>{{ repo_camion_mv0.0|add:sgf_mv0.0 }}</td>
+                               <td>{{ repo_camion_mv0.1|add:sgf_mv0.1 }}</td>
+                               <td>{{ repo_camion_mv0.2|add:sgf_mv0.2 }}</td>
+                               <td>{{ repo_camion_mv0.3|add:sgf_mv0.3 }}</td>
+                               <td>{{ repo_camion_mv0.4|add:sgf_mv0.4 }}</td>
+                               <td>{{ repo_camion_mv0.5|add:sgf_mv0.5 }}</td>
+                               <td>{{ repo_camion_mv0.10|add:sgf_mv0.10 }}</td>
+                               <td>{{ repo_camion_mv0.6|add:sgf_mv0.6 }}</td>
+                               <td>{{ repo_camion_mv0.7|add:sgf_mv0.7 }}</td>
+                               <td>{{ repo_camion_mv0.8|add:sgf_mv0.8 }}</td>
+                               <td>{{ repo_camion_mv0.9|add:sgf_mv0.9 }}</td>
+                           </tr>
+                       </tbody>
+                   </table>
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                {% for elem, items in camion.items %}
+                <div class="col-6">
+                    <ul class="camiones miLista list-group mv1 text-center" onclick="cambiarColor(this)">
+                        <h1 class="titulo-camion">{{ elem }}</h1>
+                        {% for key, item in items.items %}
+                            <li class="list-group-item list-group-item-primary mv1">Menaje:<em class="fw-bolder menaje"> {{item.Menaje}} </em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Textil 12:<em class="fw-bolder textildoce"> {{item.Textil12}} </em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Textil 11:<em class="fw-bolder textilonce"> {{item.Textil11}} </em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Orden:<em class="fw-bolder orden"> {{item.Orden}} </em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Baños:<em class="fw-bolder banos"> {{item.Banos}}</em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Iluminacion:<em class="fw-bolder ilu"> {{item.Iluminacion}} </em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Alfombras:<em class="fw-bolder alfombras"> {{item.Alfombras}} </em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Home Deco:<em class="fw-bolder deco"> {{item.Deco}} </em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Niños:<em class="fw-bolder ninos"> {{item.Ninos}} </em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Cocinas:<em class="fw-bolder cocinas"> {{item.Cocinas}} </em></li>
+                            <li class="list-group-item list-group-item-primary mv1">Actividades:<em class="fw-bolder actividades"> {{item.Actividades}} </em></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>           
+         <div>
+            <script>
+
+                function cambiarColor(lista) {
+                  // Obtener el elemento con id
+                  var menajeElement = document.getElementById("menaje");
+                  var textildoceElement = document.getElementById("textildoce");
+                  var textilonceElement = document.getElementById("textilonce");
+                  var ordenElement = document.getElementById("orden");
+                  var banosElement = document.getElementById("banos");
+                  var iluElement = document.getElementById("ilu");
+                  var decoElement = document.getElementById("deco");
+                  var ninosElement = document.getElementById("ninos");
+                  var cocinasElement = document.getElementById("cocinas");
+                  var actividadesElement = document.getElementById("actividades");
+                  var alfombrasElement = document.getElementById("alfombras");
+                
+                  // Obtener el dato de la lista concreta
+                  var menaje = lista.querySelector(".menaje");
+                  var textildoce = lista.querySelector(".textildoce");
+                  var textilonce = lista.querySelector(".textilonce");
+                  var orden = lista.querySelector(".orden");
+                  var banos = lista.querySelector(".banos");
+                  var ilu = lista.querySelector(".ilu");
+                  var deco = lista.querySelector(".deco");
+                  var ninos = lista.querySelector(".ninos");
+                  var cocinas = lista.querySelector(".cocinas");
+                  var actividades = lista.querySelector(".actividades");
+                  var alfombras = lista.querySelector(".alfombras");
+                
+                  // Si el color de la lista no es rojo, lo cambiamos a rojo
+                  if (!lista.style.color || lista.style.color === "") {
+                    lista.style.color = "red";
+                
+                <!-- MENAJE -->
+                    var menajecurrentValue = parseInt(menaje.textContent);
+                    menajeElement.textContent -= menajecurrentValue;
+                <!-- TEXTIL 12 -->
+                    var textildocecurrentValue = parseInt(textildoce.textContent);
+                    textildoceElement.textContent -= textildocecurrentValue;
+                <!-- TEXTIL 11-->
+                    var textiloncecurrentValue = parseInt(textilonce.textContent);
+                    textilonceElement.textContent -= textiloncecurrentValue;
+                <!-- ORDEN -->
+                    var ordencurrentValue = parseInt(orden.textContent);
+                    ordenElement.textContent -= ordencurrentValue;
+                <!-- BAÑOS -->
+                    var banoscurrentValue = parseInt(banos.textContent);
+                    banosElement.textContent -= banoscurrentValue;
+                <!-- ILUMINACION-->
+                    var ilucurrentValue = parseInt(ilu.textContent);
+                    iluElement.textContent -= ilucurrentValue;
+                <!--DECORACION-->
+                    var decocurrentValue = parseInt(deco.textContent);
+                    decoElement.textContent -= decocurrentValue;
+                <!-- NIÑOS -->
+                    var ninoscurrentValue = parseInt(ninos.textContent);
+                    ninosElement.textContent -= ninoscurrentValue;
+                <!-- COCINAS -->
+                    var cocinascurrentValue = parseInt(cocinas.textContent);
+                    cocinasElement.textContent -= cocinascurrentValue;
+                <!-- ACTIVIDADES -->
+                    var actividadescurrentValue = parseInt(actividades.textContent);
+                    actividadesElement.textContent -= actividadescurrentValue;
+                <!-- ALFOMBRAS -->
+                    var alfombrascurrentValue = parseInt(alfombras.textContent);
+                    alfombrasElement.textContent -= alfombrascurrentValue;
+                
+                  } else {
+                    // Si el color de la lista es rojo, lo cambiamos a su color original
+                    lista.style.color = "";
+                
+                    //Convierte a int los valores actuales de el dato
+                    var menajecurrentValue = parseInt(menaje.textContent);
+                    var textildocecurrentValue = parseInt(textildoce.textContent);
+                    var textiloncecurrentValue = parseInt(textilonce.textContent);
+                    var ordencurrentValue = parseInt(orden.textContent);
+                    var banoscurrentValue = parseInt(banos.textContent);
+                    var ilucurrentValue = parseInt(ilu.textContent);
+                    var decocurrentValue = parseInt(deco.textContent);
+                    var ninoscurrentValue = parseInt(ninos.textContent);
+                    var cocinascurrentValue = parseInt(cocinas.textContent);
+                    var actividadescurrentValue = parseInt(actividades.textContent);
+                    var alfombrascurrentValue = parseInt(alfombras.textContent);
+                
+                
+                    // Convertir el valor a entero y sumarlo con currentValue
+                <!-- MENAJE -->
+                    var menajeintValue = parseInt(menajeElement.textContent);
+                    var menajetotal = menajeintValue + menajecurrentValue;
+                    menajeElement.textContent = menajetotal;
+                <!--TEXTIL 12-->
+                    var textildoceintValue = parseInt(textildoceElement.textContent);
+                    var textildocetotal = textildoceintValue + textildocecurrentValue;
+                    textildoceElement.textContent = textildocetotal;
+                <!--    TEXTIL 11-->
+                    var textilonceintValue = parseInt(textilonceElement.textContent);
+                    var textiloncetotal = textilonceintValue + textiloncecurrentValue;
+                    textilonceElement.textContent = textiloncetotal;
+                <!--    ORDEN-->
+                    var ordenintValue = parseInt(ordenElement.textContent);
+                    var ordentotal = ordenintValue + ordencurrentValue;
+                    ordenElement.textContent = ordentotal;
+                <!--    BAÑOS-->
+                    var banosintValue = parseInt(banosElement.textContent);
+                    var banostotal = banosintValue + banoscurrentValue;
+                    banosElement.textContent = banostotal;
+                <!--    ILUMINACION-->
+                    var iluintValue = parseInt(iluElement.textContent);
+                    var ilutotal = iluintValue + ilucurrentValue;
+                    iluElement.textContent = ilutotal;
+                <!--    DECORACION-->
+                    var decointValue = parseInt(decoElement.textContent);
+                    var decototal = decointValue + decocurrentValue;
+                    decoElement.textContent = decototal;
+                <!--NIÑOS-->
+                    var ninosintValue = parseInt(ninosElement.textContent);
+                    var ninostotal = ninosintValue +ninoscurrentValue;
+                    ninosElement.textContent = ninostotal;
+                <!--   COCINAS-->
+                    var cocinasintValue = parseInt(cocinasElement.textContent);
+                    var cocinastotal = cocinasintValue +cocinascurrentValue;
+                    cocinasElement.textContent = cocinastotal;
+                <!--    ACTIVIDADES-->
+                    var actividadesintValue = parseInt(actividadesElement.textContent);
+                    var actividadestotal = actividadesintValue +actividadescurrentValue;
+                    actividadesElement.textContent = actividadestotal;
+                <!--NIÑOS-->
+                    var alfombrasintValue = parseInt(alfombrasElement.textContent);
+                    var alfombrastotal = alfombrasintValue +alfombrascurrentValue;
+                    alfombrasElement.textContent = alfombrastotal;
+                  }
+                }
+                
+                </script>
+ {% endblock body %}

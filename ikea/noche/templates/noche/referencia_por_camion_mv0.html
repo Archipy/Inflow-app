@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'noche/css/noche.css' %}" type="text/css">
+{% endblock %}
+{% block title %} - Noches{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row table-responsive">
+            {% for camion, detalles in articulos.items %}         
+            <table class="table table-primary table-striped table-bordered table-sm text-center">
+                <h1 class="text-center">{{ camion }}</h1>
+            <tr>
+                <th scope="col">Referencia</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">LV</th>
+                <th scope="col">HASTA</th>
+            </tr>
+                {% for shipment, info in detalles.items %}
+                    {% for articulo in info.Articulos %}
+                        {% if articulo.HASTA == "Sales" %}
+                        <tr class="fw-bolder">
+                            <td >{{ articulo.REF }}</td>
+                            <td >{{ articulo.NOMBRE }}</td>
+                            <td >{{ articulo.LV }}</td>
+                            <td >{{ articulo.HASTA }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td >{{ articulo.REF }}</td>
+                            <td >{{ articulo.NOMBRE }}</td>
+                            <td >{{ articulo.LV }}</td>
+                            <td >{{ articulo.HASTA }}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                  </table>
+            {% endfor %}
+            
+        </div>
+        </div>    
+{% endblock body %}
